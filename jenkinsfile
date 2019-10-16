@@ -6,8 +6,6 @@ pipeline{
 		sh 'source myenv/bin/activate'
 	}
 	stage('Build'){
-		sh 'mkdir package'
-		
 		sh 'pip install -r requirements.txt'
 		sh " zip funtion.zip -y -r . -x 'myenv/*'"
 		}
