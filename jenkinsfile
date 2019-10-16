@@ -1,1 +1,18 @@
-
+pipeline{
+	agent any
+	stages{
+	stage('setup'){
+		sh 'virtualenv -p python myenv'
+		sh 'source myenv/bin/activate'
+	}
+	stage('Build'){
+		sh 'mkdir package'
+		
+		sh 'pip install -r requirements.txt'
+		sh " zip funtion.zip -y -r . -x 'myenv/*'"
+		}
+	stage(deploy){
+		sh "aws lambda update-function-code  ---s3-bucket kalai-lambda--s3-key funtion.zip "
+	}
+	}
+}
