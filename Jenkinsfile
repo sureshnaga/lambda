@@ -10,8 +10,8 @@ pipeline{
 		}
 	stage(deploy){
 	steps{
-		sh "aws s3 cp function.zip s3://kalai-lambda/"
-		sh "aws lambda update-function-code  --function-name demolambda --s3-bucket kalai-lambda --s3-key function.zip"
+		sh "sudo aws s3 cp function.zip s3://kalai-lambda/"
+		sh "sudo aws lambda update-function-code  --function-name demolambda --s3-bucket kalai-lambda --s3-key function.zip"
 	}
 	}
 	}
