@@ -3,7 +3,6 @@ pipeline{
 	stages{
 	stage('Setup & Build'){
 	steps{
-		
 		sh 'pip install --target . pymysql '
 		sh "zip -r funtion.zip ."
 		sh "chmod 777 funtion.zip"
