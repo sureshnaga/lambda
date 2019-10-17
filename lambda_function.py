@@ -22,10 +22,10 @@ except pymysql.MySQLError as e:
 logger.info("SUCCESS: Connection to RDS MySQL instance succeeded")
 def lambda_handler(event, context):
     user=event['user']
-    team=event['team']
+    email=event['email']
     feedback=event['feedback']
-    rating=event['rating']  
-    s="Insert into `AuroraDemoDB`  values ('{}','{}','{}','{}')".format(user,team,feedback,rating)
+    phone=event['phone']  
+    s="Insert into `AuroraDemoDB`  values ('{}','{}','{}','{}')".format(user,email,feedback,phone)
 
     with conn.cursor() as cur:
       cur.execute(s)
@@ -33,5 +33,5 @@ def lambda_handler(event, context):
         
     conn.commit()
 
-    return "Your Feedback has been updated"
+    return "your feedback has been updated"
     
