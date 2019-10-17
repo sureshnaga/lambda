@@ -1,4 +1,4 @@
 @Library('pipelinelib') _
 
 
-pipeline()
+pipline()
