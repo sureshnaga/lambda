@@ -1,7 +1,7 @@
 pipeline{
 	agent any
 	options{
-	buildDiscarder(logRotator(daysToKeepStr: '3')
+	buildDiscarder(logRotator(daysToKeepStr: '3'))
 	timestamps() 
 	disableConcurrentBuilds()
 	}
