@@ -1,5 +1,10 @@
 pipeline{
 	agent any
+	options{
+	buildDiscarder(logRotator(daysToKeepStr: '3')
+	timestamps() 
+	disableConcurrentBuilds()
+	}
 	stages{
 	stage('Setup & Build'){
 	steps{
