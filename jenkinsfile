@@ -1,23 +1,18 @@
 pipeline{
 	agent any
 	stages{
-	stage('setup'){
+	stage('Setup & Build'){
 	steps{
-		sh 'virtualenv -p python myenv'
-		sh 'source myenv/bin/activate'
-	}
-	}
-	stage('Build'){
-	steps{
-		sh 'mkdir package'
-		
-		sh 'pip install -r requirements.txt'
-		sh " zip funtion.zip -y -r . -x 'myenv/*'"
+		#sh 'pip install -r requirements.txt'
+		sh 'pip install --target . pymysql '
+		sh "zip -r funtion.zip ."
+		sh "chmod 777 funtion.zip"
 		}
 		}
 	stage(deploy){
 	steps{
-		sh "aws lambda update-function-code  ---s3-bucket kalai-lambda--s3-key funtion.zip "
+		sh "aws s3 cp function.zip s3://kalai-lambda/"
+		sh "aws lambda update-function-code  --function-name demolambda --s3-bucket kalai-lambda --s3-key function.zip"
 	}
 	}
 	}
